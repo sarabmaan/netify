@@ -1,0 +1,74 @@
+
+    html{
+        font-size: calc(1rem + (5) * ((100vw - 300px) / 780));
+        color: blue;
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        color: magenta;;
+        font-style: oblique; 
+    }
+    form{
+        display: grid;
+        grid-auto-rows: auto;
+    }
+    body{
+        height: 100%;
+        background-color: lightpink;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        background-color: wheat;
+        border: 2px solid brown;
+        margin: 0px 300px;
+        padding: 10px;
+
+    }
+    input{
+        cursor: pointer;
+    }
+    button{
+        color: yellow;
+        background-color: darkolivegreen;
+        cursor: pointer;
+        width: 50px;
+    }
+    input[type=text]{
+        width: 45px;
+        padding: 5px 30px;
+        border: none;
+        color: rgb(184, 46,28);
+        border-bottom: 2px solid black;
+    transition: width 0.4s ease-out;
+    }
+    input[type=text]:focus{
+      width: 70%
+    }
+input[type=time]{
+    width: 45px;
+    background-color: lightgreen;
+}
+    footer{
+        font-size: 30px;
+        color: darkblue;
+        margin: 0px 300px;
+        display: flex;
+        justify-content: center;
+        border: 2px solid darkgreen;
+    }
+#TODOLISTS{
+    display: grid;
+    font-family: cursive;
+    color: darkviolet;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+#add > label::after{
+    content: "😊";
+}
+label::before{
+    content: "👫";
+}
+

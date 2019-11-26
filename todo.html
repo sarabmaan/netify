@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sarabjeet Kaur</title>
+
+<style>
+    html{
+        font-size: calc(1rem + (5) * ((100vw - 300px) / 780));
+        color: blue;
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        color: magenta;;
+        font-style: oblique; 
+    }
+    form{
+        display: grid;
+        grid-auto-rows: auto;
+    }
+    body{
+        height: 100%;
+        background-color: lightpink;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        background-color: wheat;
+        border: 2px solid brown;
+        margin: 0px 300px;
+        padding: 10px;
+
+    }
+    input{
+        cursor: pointer;
+    }
+    button{
+        color: yellow;
+        background-color: darkolivegreen;
+        cursor: pointer;
+        width: 50px;
+    }
+    input[type=text]{
+        width: 45px;
+        padding: 5px 30px;
+        border: none;
+        color: rgb(184, 46,28);
+        border-bottom: 2px solid black;
+    transition: width 0.4s ease-out;
+    }
+    input[type=text]:focus{
+      width: 70%
+    }
+input[type=time]{
+    width: 45px;
+    background-color: lightgreen;
+}
+    footer{
+        font-size: 30px;
+        color: darkblue;
+        margin: 0px 300px;
+        display: flex;
+        justify-content: center;
+        border: 2px solid darkgreen;
+    }
+#TODOLISTS{
+    display: grid;
+    font-family: cursive;
+    color: darkviolet;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+#add > label::after{
+    content: "😊";
+}
+label::before{
+    content: "👫";
+}
+
+
+</style>
+</head>
+<body>
+    <header>
+            <h1>
+                    TODO LISTS
+                </h1>
+    </header>
+    <main>
+        <form action="/" method="GET">
+        <label for = "todo-items">Do Something</label>
+        <input type = "text" id = "todo-items" name = "todo-items">
+        <button type = "button" id = 'button'>➕</button>
+</form>
+<form action="/" method="get">
+    <ul id="TODOLISTS">
+        
+    </ul>
+</form>
+
+<template id = "todolist">
+
+   <li id="add">
+    <input id = "todo-add" type = "checkbox" name = "todo-add" onclick="checkBoxUpdate(this)">
+    <label for = "todo-add"></label>
+</li>
+</template>
+<script>function addToDo(event) {
+    event.preventDefault();
+    
+    const todo = document.querySelector('#todo-items');
+    const value = todo.value.trim();
+    
+    if (value.length > 0) {
+    const hash = (Date.now().toString(36).substr(2, 4) + performance.now().toString(36).replace('.','').substr(0, 4) + Math.random().toString(36).substr(3, 4)).toUpperCase();
+    
+    const id = `todo-add-${hash}`;
+    const template = document.querySelector('#todolist');
+    const item = document.importNode(template.content, true);
+    const label = item.querySelector('label[for]');
+    const input = item.querySelector('#todo-add')
+    const list = document.querySelector('#TODOLISTS');
+    
+    input.setAttribute('id', id);
+    label.setAttribute('for', id);
+    
+    label.textContent = value;
+    const db = window.localStorage;
+    const itemValue = new XMLSerializer().serializeToString(item);
+    db.setItem(id, itemValue);
+    
+    list.appendChild(item);
+    }
+    
+    todo.value = '';
+    } 
+    function addStoredItems(item){
+    const db = window.localStorage;
+    const list = document.querySelector('#TODOLISTS');
+    const node = document.createRange().createContextualFragment(db.getItem(item));
+    list.appendChild(node);
+    }
+    function loadContent(){
+    const db = window.localStorage;
+    Object.keys(db).forEach(addStoredItems);
+    Object.keys(db).forEach((item) => {
+    const node = document.createRange().createContextualFragment(db.getItem(item));
+    list.appendChild(node);
+    });
+    };
+   
+    function bindFuncToButton() {
+    let button = document.querySelector('#button');
+    button.addEventListener('click', addToDo );
+    loadContent();
+    }
+    function checkBoxUpdate(cbox){
+    if(cbox.checked){
+    cbox.setAttribute('checked', cbox.checked);
+    }
+    else{
+    cbox.removeAttribute('checked');
+    }
+    const itemValue = new XMLSerializer().serializeToString(cbox.parentNode);
+    const id = cbox.id;
+    window.localStorage.setItem(id, itemValue);
+    }
+    
+    bindFuncToButton();
+    </script>
+    </main>
+    <footer>
+        Copyright &copy;2019
+    </footer>
+</body>
+</html>
