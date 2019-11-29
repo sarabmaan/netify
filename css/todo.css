@@ -3,12 +3,23 @@
         font-size: calc(1rem + (5) * ((100vw - 300px) / 780));
         color: blue;
     }
-    h1{
+    #hkh{
         display: flex;
         justify-content: center;
         color: magenta;;
         font-style: oblique; 
+        animation-name: slidein;
+        animation-duration: 4s; 
+        transition: height 0.5s;
+        transition-delay: 0.5s; 
+        transition-timing-function: ease;  
     }
+    @keyframes slidein {
+        from {
+    margin-right: 100%;
+    width: 300%; 
+  }
+      }
     form{
         display: grid;
         grid-auto-rows: auto;
@@ -17,6 +28,7 @@
         height: 100%;
         background-color: lightpink;
     }
+    
     main{
         display: flex;
         flex-direction: column;
@@ -24,8 +36,15 @@
         border: 2px solid brown;
         margin: 0px 300px;
         padding: 10px;
-
+        animation-name: import;
+        animation-duration: 3s;
     }
+
+ @keyframes import {
+    from { margin-right: 100px; }
+    100%  { margin-left: 100px} /* ignored */
+    to   { margin-left: 100px; }
+  }
     input{
         cursor: pointer;
     }
@@ -57,13 +76,24 @@ input[type=time]{
         display: flex;
         justify-content: center;
         border: 2px solid darkgreen;
+        animation-name: import2;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
     }
+    @keyframes import2 {
+        from { margin-right: 100px; }
+        100%  { margin-left: 100px} /* ignored */
+        to   { margin-left: 100px; }
+       
+      }
+
 #TODOLISTS{
     display: grid;
     font-family: cursive;
     color: darkviolet;
     overflow-x: auto;
     overflow-y: hidden;
+  
 }
 #add > label::after{
     content: "😊";

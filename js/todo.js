@@ -57,8 +57,33 @@ function addToDo(event) {
     const itemValue = new XMLSerializer().serializeToString(cbox.parentNode);
     const id = cbox.id;
     window.localStorage.setItem(id, itemValue);
-    }
+}
+
+function remove(kaler){
+kaler.preventDefault();
+var as = kaler.currentTarget.parentNode.querySelector('input').id;
+localStorage.removeItem(as);
+const item = kaler.currentTarget.parentNode;
+const list = item.parentNode;
+list.removeChild(item);
+
+}
+
+var ani = document.getElementById("hkh");
+ function animation(){
+     ani.style.animation = "slidein 4s 2"
+ }
+
+ ani.addEventListener("animationstart", startfunction);
+ ani.addEventListener("animationend", endfunction);
+
+ function startfunction(){
+    ani.style.backgroundColor = "yellow";
+ }
+
+ function endfunction(){
+     ani.style.backgroundColor = "green";
+ }
 
 
-    
     bindFuncToButton();
