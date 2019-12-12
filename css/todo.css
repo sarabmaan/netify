@@ -1,7 +1,14 @@
-
+:root{
+    --root-size:calc(1rem + (5) * ((100vw - 300px) / (1080-300)));
+    --color:rgb(75, 43, 190);
+    --color_b:darkolivegreen;
+}
     html{
-        font-size: calc(1rem + (5) * ((100vw - 300px) / 780));
-        color: blue;
+        font-size:var(--root-size);
+        color:var(--color);
+    }
+    :root{
+        --width: 45px;
     }
     #hkh{
         display: flex;
@@ -29,12 +36,11 @@
         background-color: lightpink;
     }
     
+    
     main{
         display: flex;
         flex-direction: column;
         background-color: wheat;
-        border: 2px solid brown;
-        margin: 0px 300px;
         padding: 10px;
         animation-name: import;
         animation-duration: 3s;
@@ -49,13 +55,13 @@
         cursor: pointer;
     }
     button{
-        color: yellow;
-        background-color: darkolivegreen;
+        
+        background-color: var(--color_b);
         cursor: pointer;
         width: 50px;
     }
     input[type=text]{
-        width: 45px;
+        width: var(--width);
         padding: 5px 30px;
         border: none;
         color: rgb(184, 46,28);
@@ -66,16 +72,14 @@
       width: 70%
     }
 input[type=time]{
-    width: 45px;
+    width: var(--width);
     background-color: lightgreen;
 }
     footer{
         font-size: 30px;
-        color: darkblue;
-        margin: 0px 300px;
+        color: var(--color);
         display: flex;
         justify-content: center;
-        border: 2px solid darkgreen;
         animation-name: import2;
         animation-duration: 3s;
         animation-timing-function: ease-in-out;
@@ -87,7 +91,7 @@ input[type=time]{
        
       }
 
-#TODOLISTS{
+#TODOLISTS:hover{
     display: grid;
     font-family: cursive;
     color: darkviolet;
@@ -96,9 +100,20 @@ input[type=time]{
   
 }
 #add > label::after{
-    content: "😊";
+    content: "👍 ";
 }
 label::before{
-    content: "👫";
+    content: "🍁";
 }
 
+@media screen and (max-width: 900px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+  @media screen and (max-width: 600px) {
+ footer{
+    display: none;
+    opacity: 0%;
+    }
+  }
